@@ -67,7 +67,7 @@ interface Movable {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  Abstract base class Mover 
  */
-abstract class Mover {// implements Movable {
+abstract class Mover  implements Movable {
 
   protected float x, y;
   protected float speed;
@@ -125,5 +125,38 @@ abstract class Mover {// implements Movable {
      return false; 
   }
   
-  //TODO: Part I: implement the methods of Moveable interface - delete this comment
+  // Setters and Getters
+  
+  //Getters
+  float getX(){
+   return  this.x;
+  }
+  
+  float getY(){
+   return this.y; 
+  }
+  
+  float getSpeed(){
+   return this.speed; 
+  }
+  float getDirection(){
+   return this.direction; 
+  }
+  
+  float getRadius(){
+   return this.radius; 
+  }
+  
+  //Setters
+  void setDirection(float newDirectionInDegrees){
+    this.direction = newDirectionInDegrees;
+  }
+  
+  void setSpeed(float newSpeed){
+   this.speed = newSpeed; 
+  }
+  
+
+  
+  
 }
