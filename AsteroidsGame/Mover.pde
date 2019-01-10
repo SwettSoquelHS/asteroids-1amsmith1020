@@ -67,7 +67,7 @@ interface Movable {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  Abstract base class Mover 
  */
-abstract class Mover  implements Movable {
+abstract class Mover implements Movable {
 
   protected float x, y;
   protected float speed;
