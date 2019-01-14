@@ -13,26 +13,27 @@ boolean ROTATE_LEFT;  //User is pressing <-
 boolean ROTATE_RIGHT; //User is pressing ->
 boolean MOVE_FORWARD; //User is pressing ^ arrow
 boolean SPACE_BAR;    //User is pressing space bar
+boolean HYPERSPACE;
 
 
 /* * * * * * * * * * * * * * * * * * * * * * *
  Initialize all of your variables and game state here
  */
- float x_pos = width /2;
- float y_pos = height / 2;
+int asteroidSize;
+float x_pos = width /2;
+float y_pos = height / 2;
 public void setup() {
   size(640, 400);
 
   //initialize your asteroid array and fill it
 
-  player1 = new Spaceship(x_pos, y_pos);
+  player1 = new Spaceship(width /2, height / 2);
 
   //initialize starfield
-  starField = new Star[50];
-   for(int i = 0; i < starField.length; i++){
-   starField[i] = new Star((double)(Math.random() * 640), (double)(Math.random() * 400));
+  starField = new Star[100];
+  for (int i = 0; i < starField.length; i++) {
+    starField[i] = new Star((double)(Math.random() * 640), (double)(Math.random() * 400));
   }
-  
 }
 
 
@@ -47,8 +48,8 @@ public void draw() {
 
   //Draw Starfield first 
   //TODO: Part I
-  for(int i = 0; i < starField.length; i++){
-   starField[i].show(); 
+  for (int i = 0; i < starField.length; i++) {
+    starField[i].show();
   }
 
   //Check bullet collisions
@@ -77,7 +78,7 @@ public void draw() {
     player1.changeSpeedBy(-0.5);
   }
   player1.update();
-
+  
 
   //player1.show();
 
@@ -108,6 +109,8 @@ void keyPressed() {
       ROTATE_RIGHT = true;
     } else if (keyCode == UP) {
       MOVE_FORWARD = true;
+    } else if (keyCode == 82) {
+      HYPERSPACE = true;
     }
   }
 
