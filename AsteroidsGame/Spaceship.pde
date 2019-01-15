@@ -73,4 +73,11 @@ class Spaceship extends Mover {
 
     popMatrix();
   }
+  
+  void hyperspace(){
+    this.speed = 0;
+    this.x = random(100,600);
+    this.y = random(100,360);
+    
+  }
 }

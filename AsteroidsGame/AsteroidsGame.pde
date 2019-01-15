@@ -5,7 +5,7 @@ Spaceship player1;
 //Asteroid[] asteroids;
 Star[] starField;
 
-
+Asteroid[] asteroids;
 /*
   Track User keyboard input
  */
@@ -13,7 +13,6 @@ boolean ROTATE_LEFT;  //User is pressing <-
 boolean ROTATE_RIGHT; //User is pressing ->
 boolean MOVE_FORWARD; //User is pressing ^ arrow
 boolean SPACE_BAR;    //User is pressing space bar
-boolean HYPERSPACE;
 
 
 /* * * * * * * * * * * * * * * * * * * * * * *
@@ -26,6 +25,11 @@ public void setup() {
   size(640, 400);
 
   //initialize your asteroid array and fill it
+  
+  asteroids = new Asteroid[10];
+  for(int i = 0; i < asteroids.length; i++){
+   asteroids[i] = new Asteroid(random(100,600), random(100,300), 1.0, (float)Math.random() * 360);
+  }
 
   player1 = new Spaceship(width /2, height / 2);
 
@@ -62,6 +66,9 @@ public void draw() {
 
   //Draw asteroids
   //TODO: Part II
+  for (int i = 0; i < asteroids.length; i++) {
+    asteroids[i].show();
+  }
 
   //Update spaceship
   //TODO: Part I
@@ -78,7 +85,7 @@ public void draw() {
     player1.changeSpeedBy(-0.5);
   }
   player1.update();
-  
+
 
   //player1.show();
 
@@ -109,8 +116,8 @@ void keyPressed() {
       ROTATE_RIGHT = true;
     } else if (keyCode == UP) {
       MOVE_FORWARD = true;
-    } else if (keyCode == 82) {
-      HYPERSPACE = true;
+    } else if (keyCode == 72) {
+      player1.hyperspace();
     }
   }
 
@@ -138,4 +145,19 @@ void keyReleased() {
   if (keyCode == 32) {
     SPACE_BAR = false;
   }
+}
+
+
+void checkOnAsteroids() {
+  
+  for(int i = 0; i < asteroids.length; i++){
+    Asteroid a1 = asteroids[i];
+    for(int j = 0; j < asteroids.length; j++){
+      Asteroid a2 = asteroids[j];
+      if(a1 != a2 && a1.collidingWith(a2)){
+       //do something... 
+      }
+    }
+  }
+  
 }
