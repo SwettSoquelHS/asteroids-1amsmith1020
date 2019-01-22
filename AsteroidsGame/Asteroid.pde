@@ -7,14 +7,18 @@
  to render the asteroid.
  */
 class Asteroid extends Mover {   
-  //your code here
+
+  int size;
+  
   Asteroid(float x, float y, float speed, float direction) {
     super(x, y, speed, direction);
+    
+    size = (int)(3 * Math.random()+1);
   }
 
 
   int asteroidSize(int size) {
-    size = (int) 1+ (int) Math.random() * 3;
+    size = (int)(3 * Math.random()+1);
     return size;
   }
 
@@ -22,7 +26,6 @@ class Asteroid extends Mover {
 
   //Math.random * 4; (int)
   void show() {
-    float size = (int) 1+ (int) Math.random() * 3;
     if (size == 1) {
       beginShape();
       pushMatrix();
@@ -40,6 +43,7 @@ class Asteroid extends Mover {
       beginShape();
       pushMatrix();
       translate(x, y);
+      scale(2);
       fill(70);
       vertex(0, 8);
       vertex(-4, 5);
@@ -53,10 +57,12 @@ class Asteroid extends Mover {
       beginShape();
       pushMatrix();
       translate(x, y);
+      scale(1.75);
       fill(90);
       vertex(0, 14);
       vertex(-8, 12);
       vertex(-10, 0);
+      vertex(-8,0);
       vertex(8, 0);
       vertex(9, 5);
       vertex(0, 14);
