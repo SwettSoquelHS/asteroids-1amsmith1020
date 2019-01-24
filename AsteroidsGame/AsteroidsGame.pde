@@ -28,7 +28,8 @@ public void setup() {
   
   asteroids = new Asteroid[10];
   for(int i = 0; i < asteroids.length; i++){
-   asteroids[i] = new Asteroid(random(100,600), random(100,300), 1.0, (float)Math.random() * 360);
+   asteroids[i] = new Asteroid((float)(Math.random() * 600), (float)(Math.random() * 360),
+   2.0, (float)Math.random() * 360);
   }
 
   player1 = new Spaceship(width /2, height / 2);
