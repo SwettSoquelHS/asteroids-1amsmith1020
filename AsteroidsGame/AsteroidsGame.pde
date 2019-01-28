@@ -27,9 +27,12 @@ public void setup() {
   //initialize your asteroid array and fill it
   
   asteroids = new Asteroid[10];
+  
   for(int i = 0; i < asteroids.length; i++){
-   asteroids[i] = new Asteroid((float)(Math.random() * 600), (float)(Math.random() * 360),
-   2.0, (float)Math.random() * 360);
+    
+   asteroids[i] = new Asteroid((float)(300 * Math.random()), (float)(180 * Math.random()),
+   1.0, (float)Math.random() * 360);
+   
   }
 
   player1 = new Spaceship(width /2, height / 2);
@@ -69,6 +72,7 @@ public void draw() {
   //TODO: Part II
   for (int i = 0; i < asteroids.length; i++) {
     asteroids[i].show();
+    asteroids[i].update();
   }
 
   //Update spaceship

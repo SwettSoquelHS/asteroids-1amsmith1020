@@ -24,7 +24,7 @@ class Asteroid extends Mover {
     return size;
   }
   
-  void move(){
+  void update(){
     x_pos = x_pos + (float)(x + Math.cos(direction) * speed);
     y_pos = y_pos + (float)(y + Math.sin(direction) * speed);
   }
