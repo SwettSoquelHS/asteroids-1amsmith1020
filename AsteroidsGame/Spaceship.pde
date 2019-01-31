@@ -12,8 +12,8 @@ class Spaceship extends Mover {
     direction = 270;
   }
 
-  Spaceship(float x, float y, float speed, float direction) {
-    super(x, y, speed, direction);
+  Spaceship(float x_pos, float y_pos, float speed, float direction) {
+    super(x_pos, y_pos, speed, direction);
   }
 
   void Rotate(float amount) {
@@ -34,7 +34,7 @@ class Spaceship extends Mover {
   void show() {
     noStroke();
     pushMatrix();
-    translate(x, y);
+    translate(x_pos, y_pos);
     scale(0.75);
     rotate(radians(direction + 270));
     beginShape();
@@ -76,8 +76,8 @@ class Spaceship extends Mover {
   
   void hyperspace(){
     this.speed = 0;
-    this.x = random(100,600);
-    this.y = random(100,360);
+    this.x_pos = random(100,600);
+    this.y_pos = random(100,360);
     
   }
 }

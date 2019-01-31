@@ -19,20 +19,21 @@ boolean SPACE_BAR;    //User is pressing space bar
  Initialize all of your variables and game state here
  */
 int asteroidSize;
-float x_pos = width /2;
-float y_pos = height / 2;
+
 public void setup() {
   size(640, 400);
 
   //initialize your asteroid array and fill it
-  
+
   asteroids = new Asteroid[10];
-  
-  for(int i = 0; i < asteroids.length; i++){
-    
-   asteroids[i] = new Asteroid((float)(300 * Math.random()), (float)(180 * Math.random()),
-   1.0, (float)Math.random() * 360);
-   
+
+  for (int i = 0; i < asteroids.length; i++) {
+
+    asteroids[i] = new Asteroid(
+      (float)(width*Math.random()), 
+      (float)(height*Math.random()), 
+      0.3, 
+      (float)(-1 * Math.random() * -360));
   }
 
   player1 = new Spaceship(width /2, height / 2);
@@ -67,7 +68,9 @@ public void draw() {
 
   //Check for asteroid collisions against other asteroids and alter course
   //TODO: Part III, for now keep this comment in place
-
+  for(int i = 0; i < asteroids.length; i++){
+    collidingWithBarrier(asteroids[i]);
+  }
   //Draw asteroids
   //TODO: Part II
   for (int i = 0; i < asteroids.length; i++) {
@@ -154,15 +157,14 @@ void keyReleased() {
 
 
 void checkOnAsteroids() {
-  
-  for(int i = 0; i < asteroids.length; i++){
+
+  for (int i = 0; i < asteroids.length; i++) {
     Asteroid a1 = asteroids[i];
-    for(int j = 0; j < asteroids.length; j++){
+    for (int j = 0; j < asteroids.length; j++) {
       Asteroid a2 = asteroids[j];
-      if(a1 != a2 && a1.collidingWith(a2)){
-       //do something... 
+      if (a1 != a2 && a1.collidingWith(a2)) {
+        //do something...
       }
     }
   }
-  
 }

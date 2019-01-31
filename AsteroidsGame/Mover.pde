@@ -69,7 +69,7 @@ interface Movable {
  */
 abstract class Mover implements Movable {
 
-  protected float x, y;
+  protected float x_pos, y_pos;
   protected float speed;
   protected float direction;
   protected int myColor;
@@ -77,20 +77,20 @@ abstract class Mover implements Movable {
 
   /*
     Default Mover, not actually moving and directionless
-  */
-  Mover(float x, float y) {
+   */
+  Mover(float x_pos, float y_pos) {
     //The line below shows how we can 
     //link this constructor to the constructor below through "this"
-    this(x, y, 0, 0);  
+    this(x_pos, y_pos, 0, 0);
   }
 
   /*
     Mover constructor specifying x, y position along with its speed and
-    direction (in degrees)
-  */
-  Mover(float x, float y, float speed, float direction) {
-    this.x = x;
-    this.y = y;
+   direction (in degrees)
+   */
+  Mover(float x_pos, float y_pos, float speed, float direction) {
+    this.x_pos = x_pos;
+    this.y_pos = y_pos;
     this.speed = speed;
     this.direction = direction;
     myColor = 225;
@@ -101,8 +101,8 @@ abstract class Mover implements Movable {
     Most of your movalbe objects should follow this pattern.
    */
   void update() {
-    x = x + speed*(float)Math.cos(radians(direction));
-    y = y + speed*(float)Math.sin(radians(direction));
+    x_pos = x_pos + speed*(float)Math.cos(radians(direction));
+    y_pos = y_pos + speed*(float)Math.sin(radians(direction));
 
     //todo: You need to decide what to do when X is less than 0 or greater than width
     //todo: You need to decide what to do when Y is less than 0 or greater than height
@@ -112,8 +112,8 @@ abstract class Mover implements Movable {
 
   /*
     Save this for your subclasses to override.
-    but notice how it is tagged with abstract, meaning 
-    it is incomplete. (It's like an I.O.U.)
+   but notice how it is tagged with abstract, meaning 
+   it is incomplete. (It's like an I.O.U.)
    */
   abstract void show();
 
@@ -121,44 +121,50 @@ abstract class Mover implements Movable {
   /*
     TODO: Part 4: Implement collision detection
    */
-  boolean collidingWith(Movable m){
-    float distance = dist(x, y, m.getX(), m.getY());
+  boolean collidingWith(Movable m) {
+    float distance = dist(x_pos, y_pos, m.getX(), m.getY());
     boolean touching  = distance < (radius + m.getRadius());
-     return touching; 
+    return touching;
   }
-  
+
+  void collidingWithBarrier(Asteroid m) {
+
+    if (m.getX() > width || m.getX() < 0) {
+      direction = direction * -1;
+    }
+    if (m.getY() > height || m.getY() < 0) {
+      direction = direction * -1;
+    }
+  }
+
   // Setters and Getters
-  
+
   //Getters
-  float getX(){
-   return  this.x;
+  float getX() {
+    return  this.x_pos;
   }
-  
-  float getY(){
-   return this.y; 
+
+  float getY() {
+    return this.y_pos;
   }
-  
-  float getSpeed(){
-   return this.speed; 
+
+  float getSpeed() {
+    return this.speed;
   }
-  float getDirection(){
-   return this.direction; 
+  float getDirection() {
+    return this.direction;
   }
-  
-  float getRadius(){
-   return this.radius; 
+
+  float getRadius() {
+    return this.radius;
   }
-  
+
   //Setters
-  void setDirection(float newDirectionInDegrees){
+  void setDirection(float newDirectionInDegrees) {
     this.direction = newDirectionInDegrees;
   }
-  
-  void setSpeed(float newSpeed){
-   this.speed = newSpeed; 
-  }
-  
 
-  
-  
+  void setSpeed(float newSpeed) {
+    this.speed = newSpeed;
+  }
 }
