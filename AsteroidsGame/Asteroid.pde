@@ -45,18 +45,21 @@ class Asteroid extends Mover {
       scale(1.25);
       fill(60);
       beginShape();
+      vertex(0,0);
       vertex(5, 3);
       vertex(2, 5);
       vertex(-2, 4);
       vertex(-3, -1);
       vertex(-5, -5);
       vertex(4, -4);
+      vertex(5,3);
       endShape(CLOSE);
     } else if (size == 2) {
       translate(x_pos, y_pos);
       scale(2);
       fill(70);
       beginShape();
+      vertex(0,0);
       vertex(0, 8);
       vertex(-4, 5);
       vertex(-5, 0);
@@ -69,6 +72,7 @@ class Asteroid extends Mover {
       translate(x_pos, y_pos);
       scale(1.85);
       fill(90);
+      vertex(0,0);
       vertex(0, 14);
       vertex(-8, 12);
       vertex(-10, 0);

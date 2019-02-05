@@ -127,12 +127,12 @@ abstract class Mover implements Movable {
     return touching;
   }
 
-  void collidingWithBarrier(Asteroid m) {
+  void collidingWithBarrier() {
 
-    if (m.getX() > width || m.getX() < 0) {
-      direction = direction * -1;
+    if (getX() > width || getX() < 0) {
+      direction = direction * -1  + 180;
     }
-    if (m.getY() > height || m.getY() < 0) {
+    if (getY() > height || getY() < 0) {
       direction = direction * -1;
     }
   }

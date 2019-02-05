@@ -32,7 +32,7 @@ public void setup() {
     asteroids[i] = new Asteroid(
       (float)(width*Math.random()), 
       (float)(height*Math.random()), 
-      0.3, 
+      1, 
       (float)(-1 * Math.random() * -360));
   }
 
@@ -69,7 +69,7 @@ public void draw() {
   //Check for asteroid collisions against other asteroids and alter course
   //TODO: Part III, for now keep this comment in place
   for(int i = 0; i < asteroids.length; i++){
-    collidingWithBarrier(asteroids[i]);
+    asteroids[i].collidingWithBarrier();
   }
   //Draw asteroids
   //TODO: Part II

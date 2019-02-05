@@ -75,9 +75,9 @@ class Spaceship extends Mover {
   }
   
   void hyperspace(){
-    this.speed = 0;
-    this.x_pos = random(100,600);
-    this.y_pos = random(100,360);
+    speed = 0;
+    x_pos = random(100,600);
+    y_pos = random(100,360);
     
   }
 }
