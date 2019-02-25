@@ -123,7 +123,11 @@ abstract class Mover implements Movable {
    */
   boolean collidingWith(Movable m) {
     float distance = dist(x_pos, y_pos, m.getX(), m.getY());
+    float direction = m.getDirection();
     boolean touching  = distance < (radius + m.getRadius());
+    if(touching){
+      
+    }
     return touching;
   }
 
@@ -134,6 +138,19 @@ abstract class Mover implements Movable {
     }
     if (getY() > height || getY() < 0) {
       direction = direction * -1;
+    }
+  }
+
+  void outOfBounds() {
+    if (getX() < -20) {
+      x_pos = 660;
+    } else if (getX() > 665) {
+      x_pos = -15;
+    }
+    if(getY() < -20){
+      y_pos = 420;
+    } else if(getY() > 425){
+      y_pos = -15; 
     }
   }
 

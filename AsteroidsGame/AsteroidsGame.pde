@@ -39,7 +39,7 @@ public void setup() {
   player1 = new Spaceship(width /2, height / 2);
 
   //initialize starfield
-  starField = new Star[100];
+  starField = new Star[500];
   for (int i = 0; i < starField.length; i++) {
     starField[i] = new Star((double)(Math.random() * 640), (double)(Math.random() * 400));
   }
@@ -59,6 +59,7 @@ public void draw() {
   //TODO: Part I
   for (int i = 0; i < starField.length; i++) {
     starField[i].show();
+    starField[i].starOutOfBounds();
   }
 
   //Check bullet collisions
@@ -69,7 +70,7 @@ public void draw() {
   //Check for asteroid collisions against other asteroids and alter course
   //TODO: Part III, for now keep this comment in place
   for(int i = 0; i < asteroids.length; i++){
-    asteroids[i].collidingWithBarrier();
+    asteroids[i].outOfBounds();
   }
   //Draw asteroids
   //TODO: Part II
@@ -93,6 +94,7 @@ public void draw() {
     player1.changeSpeedBy(-0.5);
   }
   player1.update();
+  player1.outOfBounds();
 
 
   //player1.show();
