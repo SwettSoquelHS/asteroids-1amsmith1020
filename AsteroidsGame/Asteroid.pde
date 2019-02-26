@@ -15,6 +15,7 @@ class Asteroid extends Mover {
 
 
     size = (int)(3 * Math.random()+1);
+    radius = size * 2;
   }
 
 
@@ -53,6 +54,9 @@ class Asteroid extends Mover {
       vertex(-5, -5);
       vertex(4, -4);
       vertex(5,3);
+      
+      ellipseMode(RADIUS);
+      ellipse(0,0,radius,radius);
       endShape(CLOSE);
     } else if (size == 2) {
       translate(x_pos, y_pos);
@@ -66,6 +70,8 @@ class Asteroid extends Mover {
       vertex(6, 0);
       vertex(5, 5);
       vertex(0, 8);
+      ellipseMode(RADIUS);
+      ellipse(0,0,radius,radius);
       endShape(CLOSE);
     } else if (size == 3) {
       beginShape();
@@ -80,12 +86,16 @@ class Asteroid extends Mover {
       vertex(8, 0);
       vertex(9, 5);
       vertex(0, 14);
+      ellipseMode(RADIUS);
+      ellipse(0,0,radius,radius);
       endShape(CLOSE);
     } else {
       translate(x_pos, y_pos);
       scale(0.15);
       triangle(30, 75, 58, 20, 86, 75);
     }
+    ellipse(0,0,radius,radius);
     popMatrix();
+    
   }
 }

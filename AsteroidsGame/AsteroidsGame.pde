@@ -69,7 +69,7 @@ public void draw() {
 
   //Check for asteroid collisions against other asteroids and alter course
   //TODO: Part III, for now keep this comment in place
-  for(int i = 0; i < asteroids.length; i++){
+  for (int i = 0; i < asteroids.length; i++) {
     asteroids[i].outOfBounds();
   }
   //Draw asteroids
@@ -77,6 +77,7 @@ public void draw() {
   for (int i = 0; i < asteroids.length; i++) {
     asteroids[i].show();
     asteroids[i].update();
+    
   }
 
   //Update spaceship
@@ -102,10 +103,14 @@ public void draw() {
 
   //Check for ship collision agaist asteroids
   //TODO: Part II or III
-
+  
+     checkOnAsteroids();
+     player1.show();
+  
+ 
   //Draw spaceship & and its bullets
   //TODO: Part I, for now just render ship
-  player1.show();
+  
   //TODO: Part IV - we will use a new feature in Java called an ArrayList, 
   //so for now we'll just leave this comment and come back to it in a bit. 
 
@@ -164,8 +169,10 @@ void checkOnAsteroids() {
     Asteroid a1 = asteroids[i];
     for (int j = 0; j < asteroids.length; j++) {
       Asteroid a2 = asteroids[j];
-      if (a1 != a2 && a1.collidingWith(a2)) {
-        //do something...
+      if (a1.collidingWith(a2)) {
+        a1.setDirection((float)a1.getDirection() * -1);
+        
+        //a2.setDirection((float)a2.getDirection() * -1);
       }
     }
   }

@@ -95,6 +95,7 @@ abstract class Mover implements Movable {
     this.direction = direction;
     myColor = 225;
     radius = 0.0;
+    
   }
 
   /*
@@ -122,24 +123,28 @@ abstract class Mover implements Movable {
     TODO: Part 4: Implement collision detection
    */
   boolean collidingWith(Movable m) {
+    if(this ==m){
+     return false; 
+    }
     float distance = dist(x_pos, y_pos, m.getX(), m.getY());
-    float direction = m.getDirection();
-    boolean touching  = distance < (radius + m.getRadius());
-    if(touching){
-      
+    
+    
+    //boolean touching  = distance < (radius + m.getRadius());
+    if (distance <= (radius + m.getRadius())) {
+      return true;
     }
-    return touching;
+    return false;
   }
 
-  void collidingWithBarrier() {
+  //void collidingWithBarrier() {
 
-    if (getX() > width || getX() < 0) {
-      direction = direction * -1  + 180;
-    }
-    if (getY() > height || getY() < 0) {
-      direction = direction * -1;
-    }
-  }
+  //  if (getX() > width || getX() < 0) {
+  //    direction = direction * -1  + 180;
+  //  }
+  //  if (getY() > height || getY() < 0) {
+  //    direction = direction * -1;
+  //  }
+  //}
 
   void outOfBounds() {
     if (getX() < -20) {
@@ -147,10 +152,10 @@ abstract class Mover implements Movable {
     } else if (getX() > 665) {
       x_pos = -15;
     }
-    if(getY() < -20){
+    if (getY() < -20) {
       y_pos = 420;
-    } else if(getY() > 425){
-      y_pos = -15; 
+    } else if (getY() > 425) {
+      y_pos = -15;
     }
   }
 
