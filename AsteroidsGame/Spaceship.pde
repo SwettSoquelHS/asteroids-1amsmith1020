@@ -80,4 +80,8 @@ class Spaceship extends Mover {
     y_pos = random(100,360);
     
   }
+  
+  void fire(){
+    
+  }
 }
