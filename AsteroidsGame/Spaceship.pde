@@ -4,6 +4,8 @@
  You may add additional methods to this class, for example "rotate" and "accelerate" 
  might be useful.
  */
+ 
+ArrayList<Bullet> myBullet= new ArrayList<Bullet>(50);
 class Spaceship extends Mover {  
 
 
@@ -73,15 +75,16 @@ class Spaceship extends Mover {
 
     popMatrix();
   }
-  
-  void hyperspace(){
+
+  void hyperspace() {
     speed = 0;
-    x_pos = random(100,600);
-    y_pos = random(100,360);
-    
+    x_pos = random(100, 600);
+    y_pos = random(100, 360);
   }
-  
-  void fire(){
-    
+
+  void fire() {
+    if (myBullet != null && !myBullet.isAlive()) {
+      myBullet = new Bullet(x_pos, y_pos); //Make sure you have declared a Bullet myBullet for the spaceship
+    }
   }
 }

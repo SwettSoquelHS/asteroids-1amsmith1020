@@ -1,5 +1,9 @@
+
+
 class Bullet extends Mover{
   private int live;
+  
+  
   Bullet(float x, float y){
     super(x, y);
     x_pos = x;
@@ -7,7 +11,9 @@ class Bullet extends Mover{
     live = 100;
   }
   
-  boolean isAlive(){
+  
+  
+  public boolean isAlive(){
     if(live < 0){
       return false;
     }
