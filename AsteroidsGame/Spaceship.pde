@@ -4,18 +4,21 @@
  You may add additional methods to this class, for example "rotate" and "accelerate" 
  might be useful.
  */
- 
-ArrayList<Bullet> myBullet= new ArrayList<Bullet>(50);
-class Spaceship extends Mover {  
 
+
+class Spaceship extends Mover {  
+  ArrayList<Bullet> myBullets;
+  Bullet myBullet;
 
   Spaceship(float x, float y) {
     super(x, y);
     direction = 270;
+    myBullets = new ArrayList<Bullet>();
   }
 
   Spaceship(float x_pos, float y_pos, float speed, float direction) {
     super(x_pos, y_pos, speed, direction);
+    myBullets = new ArrayList<Bullet>();
   }
 
   void Rotate(float amount) {
@@ -32,11 +35,25 @@ class Spaceship extends Mover {
     }
   }
 
+  void update() {
+    super.update();
+    for (int i = 0; i<myBullets.size(); i++) {
+      Bullet b = myBullets.get(i);
+      if (b!=null) {
+        b.update();
+        if (b.getLive() < 0) {
+          myBullets.remove(b);
+        }
+      }
+    }
+  }
+
 
   void show() {
     noStroke();
     pushMatrix();
     translate(x_pos, y_pos);
+
     scale(0.75);
     rotate(radians(direction + 270));
     beginShape();
@@ -71,20 +88,27 @@ class Spaceship extends Mover {
       fill(255, 255, 0);
       triangle(-4, 5, 4, 5, 0, 0);
     }
-
-
     popMatrix();
+    for (int i = 0; i<myBullets.size(); i++) {
+      Bullet b = myBullets.get(i);
+      if (b!=null) {
+        b.show();
+      }
+    }
   }
 
   void hyperspace() {
-    speed = 0;
-    x_pos = random(100, 600);
-    y_pos = random(100, 360);
+    this.speed = 0;
+    this.x_pos = random(100, 600);
+    this.y_pos = random(100, 360);
   }
 
   void fire() {
-    if (myBullet != null && !myBullet.isAlive()) {
-      myBullet = new Bullet(x_pos, y_pos); //Make sure you have declared a Bullet myBullet for the spaceship
+    for (int i = 0; i<myBullets.size(); i++) {
+      if (myBullets.get(i) != null && !myBullets.get(i).isAlive()) {
+        myBullet = new Bullet(x_pos, y_pos, speed, direction);
+        myBullets.add(myBullet);//Make sure you have declared a Bullet myBullet for the spaceship
+      }
     }
   }
 }

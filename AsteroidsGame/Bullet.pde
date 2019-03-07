@@ -1,11 +1,11 @@
 
 
 class Bullet extends Mover{
-  private int live;
+   int live;
   
   
-  Bullet(float x, float y){
-    super(x, y);
+  Bullet(float x, float y, float speed, float direction){
+    super(x, y, speed, direction);
     x_pos = x;
     y_pos = y;
     live = 100;
@@ -27,8 +27,20 @@ class Bullet extends Mover{
   }
   
   void show(){
-    if(live > 0){
+    if(isAlive()){
+      println(x_pos + " : " + y_pos);
+      pushMatrix();
+      translate(x_pos,y_pos);
+      rotate(radians(direction));
+      fill(225,255,5);
       rect(x_pos,y_pos,10,2);
     }
+  }
+  int getLive(){
+    return live;
+  }
+  
+  void setLive(int n){
+   live = n; 
   }
 }

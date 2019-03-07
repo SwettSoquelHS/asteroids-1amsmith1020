@@ -13,6 +13,7 @@ boolean ROTATE_LEFT;  //User is pressing <-
 boolean ROTATE_RIGHT; //User is pressing ->
 boolean MOVE_FORWARD; //User is pressing ^ arrow
 boolean SPACE_BAR;    //User is pressing space bar
+boolean H;            //User is pressing H key
 
 
 /* * * * * * * * * * * * * * * * * * * * * * *
@@ -77,7 +78,6 @@ public void draw() {
   for (int i = 0; i < asteroids.length; i++) {
     asteroids[i].show();
     asteroids[i].update();
-    
   }
 
   //Update spaceship
@@ -89,10 +89,16 @@ public void draw() {
     player1.Rotate(2.0);
   }
 
-  if (MOVE_FORWARD == true) {
+  if (MOVE_FORWARD) {
     player1.changeSpeedBy(0.5);
   } else {
     player1.changeSpeedBy(-0.5);
+  }
+  if(SPACE_BAR){
+    player1.fire(); 
+  }
+  if(H){
+   player1.hyperspace(); 
   }
   player1.update();
   player1.outOfBounds();
@@ -103,14 +109,14 @@ public void draw() {
 
   //Check for ship collision agaist asteroids
   //TODO: Part II or III
-  
-     checkOnAsteroids();
-     player1.show();
-  
- 
+
+  checkOnAsteroids();
+  player1.show();
+
+
   //Draw spaceship & and its bullets
   //TODO: Part I, for now just render ship
-  
+
   //TODO: Part IV - we will use a new feature in Java called an ArrayList, 
   //so for now we'll just leave this comment and come back to it in a bit. 
 
@@ -131,14 +137,15 @@ void keyPressed() {
       ROTATE_RIGHT = true;
     } else if (keyCode == UP) {
       MOVE_FORWARD = true;
-    } else if (keyCode == 72) {
-      player1.hyperspace();
-    }
+    } 
   }
 
   //32 is spacebar
   if (keyCode == 32) {  
     SPACE_BAR = true;
+  }
+  if (keyCode == 72) {
+      H = true;
   }
 }
 
@@ -155,10 +162,11 @@ void keyReleased() {
       ROTATE_RIGHT = false;
     } else if (keyCode == UP) {
       MOVE_FORWARD = false;
+    } else if(keyCode == 72){
+      H = false;
+    } else if(keyCode == 32){
+      SPACE_BAR = false;
     }
-  }
-  if (keyCode == 32) {
-    SPACE_BAR = false;
   }
 }
 
@@ -171,7 +179,7 @@ void checkOnAsteroids() {
       Asteroid a2 = asteroids[j];
       if (a1.collidingWith(a2)) {
         a1.setDirection((float)a1.getDirection() * -1);
-        
+
         //a2.setDirection((float)a2.getDirection() * -1);
       }
     }

@@ -41,7 +41,7 @@ class Asteroid extends Mover {
   void show() {
     pushMatrix();
     if (size == 1) {
-      println(x_pos + " : " + y_pos);
+      
       translate(x_pos, y_pos);
       scale(1.25);
       fill(60);
